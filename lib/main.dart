@@ -11,16 +11,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'My App',
-      home: SigningPage(),
+      home: LoginPage(),
     );
   }
 }
 
-class SigningPage extends StatelessWidget {
-  const SigningPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool _obscureText = true;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -76,7 +77,7 @@ class SigningPage extends StatelessWidget {
                       ],
                     ),
                     TextField(
-                      obscureText: true,
+                      obscureText: _obscureText,
                       style: TextStyle(
                         color: Color(0xffA2A2A2),
                         fontSize: 30,
@@ -95,6 +96,16 @@ class SigningPage extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: Color(0xff2B4C59),
+                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            _obscureText != _obscureText;
+                          },
+                          child: Icon(
+                            _obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
                         ),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
